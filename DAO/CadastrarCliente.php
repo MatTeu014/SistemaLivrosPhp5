@@ -12,7 +12,7 @@ class cadastrarCliente{
         try{
 
             $conn = $conexao->conectar();//Abrir a conexao
-            $sql = "insert into cliente(nome,endereco,telefone,dataNascimento,email,senha) values('$nome','$endereco','$telefone','$dataNascimento','$email','$senha')";
+            $sql = "insert into cliente(nome,endereco,telefone,dataNascimento,email,senha,situacao) values('$nome','$endereco','$telefone','$dataNascimento','$email','$senha','Ativado')";
             $result = mysqli_query($conn,$sql);//Executo o comando
             mysqli_close($conn);//Fechar a porta do banco de dados
 

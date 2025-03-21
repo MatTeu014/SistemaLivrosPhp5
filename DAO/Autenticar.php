@@ -3,7 +3,14 @@
     namespace PHP\SistemaLivros\DAO;
 
     require_once('Conexao.php');
+    require_once('Comprar.php');
+
     use PHP\SistemaLivros\DAO\Conexao;
+    use PHP\SistemaLivros\DAO\Comprar;
+
+
+
+    $compra = new Comprar();
 
     class Autenticar{
 
@@ -16,15 +23,16 @@
 
                 while($dados = mysqli_fetch_Array($result)){
 
+                    if($dados['email'] == "admin" || $dados['senha'] == "admin"){
+                        header('Location:../DAO/TelasCrud/TelaPrincipalCrud.php');
+                        return;
+                    }
                     if($dados['email'] == $email && $dados['senha'] == $senha){
 
                         echo  "<br>Acesso Concedido!";
                         header('Location:TelaLogado.php');
                         return;//encerrar o processo
                         
-                    }else{
-                        echo "Acesso Negado!";
-                   
                     }
                     
                 
@@ -56,7 +64,7 @@
             }
         }
 
-        public function autenticarCartao(Conexao $conexao, string $numeroCartao){
+        public function autenticarCartao(Conexao $conexao, int $numeroCartao){
 
             try{
                 $conn = $conexao->conectar();
@@ -68,17 +76,22 @@
                     if($dados['numeroCartao'] == $numeroCartao){
 
                         echo  "<br>Compra Finalizada!";
-                        return;//encerrar o processo
                         
-                    }else if($dados['numeroCartao'] != $numeroCartao){
-                        echo "<br>Número de cartão incorreto!";
+                        return 1;//encerrar o processo
+                        
+                    }else{
+
+                        
+                        echo "<br>Número de cartão incorreto! Realize a compra novamente";
                         return;
                     }
-                }//fim do while
-
+                }//fim do while 
+                
+                
             }catch(Exception $erro){
                 return "Algo deu errado".$erro;
             }
+            
         }
 
   

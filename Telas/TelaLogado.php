@@ -18,6 +18,7 @@
                 <div style="float:right; margin-top: 17px;margin-right: 20px;">
                     <button class="botao"><a href = "TelaCompra.php" style = "color: white;">Comprar</a></button>
                 </div>
+
              
                 <a href="TelaLogado.php" style="color: black;"><!-- Inicio Link Header TelaPrincipal-->
                     <div id="tituloHeaderBloco"><!--Inicio tituloHeaderBloco-->
@@ -35,11 +36,11 @@
 
             
             <aside id="aside"><!--Inicio Aside-->
-                <h1 class="tituloCategorias">Categorias</h1><!--Titulo Categorias-->
+                <h1 class="tituloCategorias">Categorias Disponíveis</h1><!--Titulo Categorias-->
                 <div id="categoriasBloco"><!--Inicio Categorias Bloco-->
 
                     <div class="categoriaBloco"><!--Inicio Categoria Bloco-->
-                        <li style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: 27px;">Comédia</li><br>
+                        <li style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: 27px;">Fantasia</li><br>
                     </div><!--Fim Categoria Bloco-->
                     <div class="categoriaBloco"><!--Inicio Categoria Bloco-->
                         <li style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: 27px;">Romance</li><br>

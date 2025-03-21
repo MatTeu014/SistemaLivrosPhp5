@@ -106,7 +106,7 @@
     
                 $conn = $conexao->conectar();
 
-                if($campo == "numeroCartao"){
+                if($campo == "numeroCartao" || $campo == "situacao"){
     
                     $sql = "update cartao set $campo = '$novoDado' where codigoCartaoPK = '$codigoCartaoPK'";
     

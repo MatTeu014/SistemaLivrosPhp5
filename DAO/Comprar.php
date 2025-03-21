@@ -88,7 +88,7 @@ class Comprar{
 
             $conn = $conexao->conectar();
 
-            $sql = "update compra set codigoClienteFK = ( select codigoClientePK from cliente where email = '$email') order by codigoCompraPK desc limit 1";
+            $sql = "update compra set codigoClienteFK = (select codigoClientePK from cliente where email = '$email') order by codigoCompraPK desc limit 1";
 
             $result = mysqli_query($conn,$sql); 
 
@@ -132,6 +132,65 @@ class Comprar{
             return "Algo deu errado!".$erro;
         }
     }
+
+    public function consultarParaReserva(Conexao $conexao, string $nome){
+
+        $conn = $conexao->conectar();
+        $sql = "select * from livro where nome = '$nome'";
+        $result = mysqli_query($conn,$sql);
+
+        try{
+            while($dados = mysqli_fetch_Array($result)){
+    
+                if($dados['quantidade'] <= 0){
+                    header('Location:TelaReservar.php');
+                    return;
+                }
+            }
+        }catch(Exception $erro){
+            echo "Algo deu errado!". $erro;
+        }
+    }
+
+    public function situacaoCompra(Conexao $conexao){
+
+        $conn = $conexao->conectar();
+        $sql = "update compra set situacao = 'ativado' order by codigoCompraPK desc limit 1";
+        $result = mysqli_query($conn,$sql);
+        
+        try{
+
+        }catch(Exception $erro){
+            echo "Algo deu errado!".$erro;
+        }
+    }
+
+    public function desativarCompra(Conexao $conexao){
+
+        $conn = $conexao->conectar();
+        $sql = "update compra set situacao = 'desativado' order by codigoCompraPK desc limit 1";
+        $result = mysqli_query($conn,$sql);
+        
+        try{
+
+        }catch(Exception $erro){
+            echo "Algo deu errado!".$erro;
+        }
+    }
+
+    public function inserirCodigoLivroReserva(Conexao $conexao, string $nomeLivro){
+
+        try{
+            $conn = $conexao->conectar();
+            $sql = "insert into reserva (codigolivroFK) select codigoLivroPK from livro where nome = '$nomeLivro'";
+            $result = mysqli_query($conn,$sql); 
+             
+            
+        }catch(Exception $erro){
+            return "Algo deu errado!".$erro;
+        }
+    }
+
 }//fim do class
 
 ?>

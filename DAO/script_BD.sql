@@ -39,24 +39,28 @@ create table cartao(
     situacao varchar(15) not null
 )engine =InnoDB;
 
+
 alter table compra add constraint compraLivro foreign key (codigoLivroFK) references livro(codigoLivroPK);
 alter table compra add constraint compraCliente foreign key (codigoClienteFK) references cliente(codigoClientePK);
 
-
-insert into livro (nome,autor,categoria,quantidade,preco) values('O Menino do Dedo Verde','Maurice Druon','Ficção',5,25.00);
-insert into livro (nome,autor,categoria,quantidade,preco) values('Elantris','Brandon Sanderson','Fantasia',4,50.00);
+insert into livro (nome,autor,categoria,quantidade,preco) values('O Menino do Dedo Verde','Maurice Druon','Ficção',0,25.00);
+insert into livro (nome,autor,categoria,quantidade,preco,situacao) values('Elantris','Brandon Sanderson','Fantasia',4,50.00,'ativado');
 insert into livro (nome,autor,categoria,quantidade,preco) values('Extraordinario',' R. J. Palacion',' Literatura infantil',5,20.00);
 insert into livro (nome,autor,categoria,quantidade,preco) values('Harry Potter e a Pedra Filosofal','J. K. Rowling','Fantasia',2,30.00);
 insert into livro (nome,autor,categoria,quantidade,preco) values('A Revolucao dos Bichos','George Orwell','Ficção distópica,',7,40.00);
 insert into livro (nome,autor,categoria,quantidade,preco) values('Fabricante de Lagrimas','Erin Doom','Romance',9,10.00);
-insert into cartao (numeroCartao) values(123);
+insert into cartao (numeroCartao,situacao) values(123,'ativado');
+
 update livro set quantidade = 0 where codigoLivroPk = 2;
-insert into cliente(email) values('email');
+
+delete from cliente where codigoClientePK = 3;
 
 select * from cliente;
 select * from livro;
 select * from compra;
 select * from cartao;
+
+insert into cliente (nome,endereco,telefone,dataNascimento,email,senha,situacao) values('admin','rua','12345','12/12/2012','admin','admin','ativado');
 
 insert into compra (codigolivroFK) select codigoLivroPK from livro where nome = 'Elantris';
 UPDATE compra SET codigoClienteFK = ( SELECT codigoClientePK FROM cliente WHERE email = 'email') order by codigoCompraPK desc limit 1;

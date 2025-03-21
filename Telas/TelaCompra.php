@@ -5,9 +5,11 @@
     require_once('../DAO/Conexao.php');
     require_once('../DAO/Comprar.php');
 
+
     use PHP\SistemaLivros\DAO\Conexao;
     use PHP\SistemaLivros\DAO\Comprar;
     use PHP\SistemaLivros\DAO\Autenticar;
+
 
     $conexao = new conexao();
     $compra = new Comprar();
@@ -74,6 +76,7 @@
                             <?php
                                 if(isset($_POST['nome']) && $_POST['nome'] != ""){
                                 $compra->inserirCodigoLivroCompra($conexao,$_POST['nome']);
+
                             }
                             ?>
                         </button>
@@ -103,24 +106,26 @@
                     <div style = "float: right; margin-right: 3%; margin-top: 3%;">
                         <button class = "botao" style = "width: 200px;">Finalizar Compra
                             <?php
-                            if(isset($_POST['nome']) && isset($_POST['quantidade']) && $_POST['nome'] != "" && $_POST['quantidade'] != ""){
-                                $compra->alterarQuantidadeLivro($conexao,$_POST['nome'],$_POST['quantidade']);
-                            }
-                            if(isset($_POST['email']) && $_POST['email'] != ""){
-                            $compra->inserirCodigoClienteCompra($conexao,$_POST['email']);
-                            }
-                            if(isset($_POST['quantidade']) && $_POST['quantidade'] != ""){
-                            $compra->quantidadeLivroCompra($conexao,$_POST['quantidade']);
-                            }
-                            if(isset($_POST['formaPagamento']) && $_POST['formaPagamento'] != ""){
-                                $compra->formaPagamento($conexao,$_POST['formaPagamento']);
-                            }
-                            if(isset($_POST['nome']) && isset($_POST['quantidade']) && $_POST['nome'] != "" && $_POST['quantidade'] != ""){
-                                $compra->precoTotalCompra($conexao,$_POST['quantidade'],$_POST['nome']);
-                            }
-                            if(isset($_POST['numeroCartao']) && $_POST['numeroCartao'] != ""){
-                                $autenticar->autenticarCartao($conexao,$_POST['numeroCartao']);
-                            }
+                                if(isset($_POST['numeroCartao']) && $_POST['numeroCartao'] != ""){
+                                    $autenticar->autenticarCartao($conexao,$_POST['numeroCartao']);
+                                }
+                                if(isset($_POST['nome']) && isset($_POST['quantidade']) && $_POST['nome'] != "" && $_POST['quantidade'] != ""){
+                                    $compra->alterarQuantidadeLivro($conexao,$_POST['nome'],$_POST['quantidade']);
+                                }
+                                if(isset($_POST['email']) && $_POST['email'] != ""){
+                                $compra->inserirCodigoClienteCompra($conexao,$_POST['email']);
+                                }
+                                if(isset($_POST['quantidade']) && $_POST['quantidade'] != ""){
+                                $compra->quantidadeLivroCompra($conexao,$_POST['quantidade']);
+                                }
+                                if(isset($_POST['formaPagamento']) && $_POST['formaPagamento'] != ""){
+                                    $compra->formaPagamento($conexao,$_POST['formaPagamento']);
+                                }
+                                if(isset($_POST['nome']) && isset($_POST['quantidade']) && $_POST['nome'] != "" && $_POST['quantidade'] != ""){
+                                    $compra->precoTotalCompra($conexao,$_POST['quantidade'],$_POST['nome']);
+                                }
+                                $compra->situacaoCompra($conexao);
+                            
                             ?>
                         </button>
                     </div>
